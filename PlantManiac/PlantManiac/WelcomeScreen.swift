@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        
         NavigationStack{
             ZStack {
                 
@@ -27,7 +28,7 @@ struct ContentView: View {
                         .foregroundColor(.accent)
                         .padding(.bottom,65)
                     
-                    //NavigationLink za deklarativni pristup
+                    //NavigationLink fo declarative approach
                     NavigationLink(destination: SignIn()){
                         
                         Text("Sign in")
@@ -67,4 +68,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+    
 }
