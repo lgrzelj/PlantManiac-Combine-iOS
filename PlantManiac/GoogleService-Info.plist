@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBPi82y0UAuYnOB_OHLwnY4gqzsh5jwa3k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>394655787576</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>foi.PlantManiac</string>
+	<key>PROJECT_ID</key>
+	<string>plantmaniac-aed41</string>
+	<key>STORAGE_BUCKET</key>
+	<string>plantmaniac-aed41.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:394655787576:ios:3b8954d00b436eb3a414cd</string>
+</dict>
+</plist>
