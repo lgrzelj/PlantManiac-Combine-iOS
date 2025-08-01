@@ -32,7 +32,7 @@ struct SignIn: View {
                     .resizable()
                     .frame(width: 100, height:100)
                 
-                Text("Sign in!")
+                Text(NSLocalizedString("sign_in1", comment: "Prijava korisnika."))
                     .foregroundStyle(.accent)
                     .font(.custom("Georgia-Italic", size: 24))
                     .padding(.bottom, 30)

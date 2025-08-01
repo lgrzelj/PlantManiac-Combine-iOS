@@ -37,7 +37,7 @@ struct Registration: View {
                     .resizable()
                     .frame(width: 100, height:100)
                 
-                Text("Registration!")
+                Text(NSLocalizedString("registration1", comment: "Registracija korisnika."))
                     .foregroundStyle(.accent)
                     .font(.custom("Georgia-Italic", size: 24))
                     .padding(.bottom, 30)
@@ -66,7 +66,7 @@ struct Registration: View {
                             .foregroundColor(.gray)
                         
                         // play with the frame and padding here
-                        TextField("Name and Lastname", text: $name)
+                        TextField(NSLocalizedString("name_lastname", comment: "Korisnikovo ime i prezime"), text: $name)
                             .autocapitalization(.none)
                             .font(.custom("Georgia", size: 18))
                             .padding(.horizontal,8)
@@ -84,7 +84,7 @@ struct Registration: View {
                             .foregroundColor(.gray)
                         
                         // play with the frame and padding here
-                        TextField("Username", text: $username)
+                        TextField(NSLocalizedString("username", comment: "Korisničko ime." ), text: $username)
                             .font(.custom("Georgia", size: 18))
                             .padding(.horizontal,8)
                             .autocapitalization(.none)
@@ -105,7 +105,8 @@ struct Registration: View {
                     .cornerRadius(20)
                     
                     if let available = isUsernameAvailable {
-                        Text(available ? " Username available" : "Username already exist! ")
+                        Text(available ? NSLocalizedString("username_available", comment:"") : NSLocalizedString("username_exists", comment: ""))
+
                             .foregroundColor(available ? .green : .red)
                             .font(.custom("Georgia", size: 10))
                     }
@@ -114,7 +115,7 @@ struct Registration: View {
                         Image(systemName:"lock.fill")
                                 .foregroundStyle(.gray)
                                     
-                        SecureField("Password", text: $password)
+                        SecureField(NSLocalizedString("password", comment: "Lozinka"), text: $password)
                                 .font(.custom("Georgia", size: 18))
                                 .padding(.horizontal,8)
                                 .autocapitalization(.none)
@@ -128,7 +129,7 @@ struct Registration: View {
                         .cornerRadius(20)
                         
                         if password.count > 0 && password.count < 6 {
-                        Text("Password needs to contain 6 marks.")
+                            Text(NSLocalizedString("password_requirement" , comment:""))
                                         .foregroundColor(.red)
                                         .font(.custom("Georgia", size: 10))
                         }
@@ -144,7 +145,7 @@ struct Registration: View {
                             if isLoading{
                                 ProgressView()
                             } else {
-                                Text("Register")
+                                Text(NSLocalizedString("registration", comment: "Registracija korisnika."))
                                     .font (.custom("Georgia", size: 22))
                                     .foregroundColor(.accent)
                                     .frame(maxWidth: .infinity)
@@ -160,7 +161,7 @@ struct Registration: View {
                                 }
                                                        
                                 if registrationSuccess {
-                                    Text("Registration successful!")
+                                    Text(NSLocalizedString("registration_success", comment:""))
                                         .foregroundColor(.green)
                                         .font(.custom("Georgia", size: 10))
                                 }

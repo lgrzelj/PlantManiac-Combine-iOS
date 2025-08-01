@@ -1,0 +1,35 @@
+//
+//  Localizable.strings
+//  PlantManiac
+//
+//  Created by ASELab on 01.08.2025..
+//
+
+
+
+"app_name" = "Plant Maniac";
+"welcome_message" = "Dobrodošli u Plant Maniac, za daljnji pristup aplikaciji odaberite opciju.";
+"sign_in" = "Prijava";
+"sign_in1" = "Prijava!";
+"registration" = "Registracija";
+"registration1" = "Registracija!";
+"name_lastname" = "Ime prezime";
+"username" = "Korisničko ime";
+"password" = "Lozinka";
+"username_available" = "Korisničko ime dostupno.";
+"username_exists" = "Korisničko ime NIJE dostupno!";
+"password_requirement" = "Lozinka mora sadržavati minimalno 6 znakova.";
+"registration_success" = "Registracija uspješna!";
+"home" = "Početni zaslon";
+"liked" = "Omiljene biljke";
+"scan" = "Skeniraj biljku";
+"profile" = "Profil";
+"diary" = "Dnevnik biljaka";
+"no_picture" = "Nema odabrane slike.";
+"add_picture" = "Odaberi sliku";
+"options" = "Odaberi opciju";
+"gallery" = "Učitaj iz galerije";
+"quit" = "Odustani";
+"loading" = "Učitavanje...";
+"no_id_plant" = "Nije moguće identificirati biljku!" ;
+"error_id_plant" = "Greška kod parsiranja odgovora.";

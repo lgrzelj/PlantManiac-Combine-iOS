@@ -22,7 +22,7 @@ struct ContentView: View {
                         .resizable()
                         .frame(width: 100, height:100)
                     
-                    Text("Welcome to Plant Maniac, for further app access choose an option.")
+                    Text(NSLocalizedString("welcome_message", comment: "Poruka dobrodošllice."))
                         .font(.custom("Georgia-Italic", size: 24))
                         .multilineTextAlignment(.center)
                         .foregroundColor(.accent)
@@ -31,7 +31,7 @@ struct ContentView: View {
                     //NavigationLink fo declarative approach
                     NavigationLink(destination: SignIn()){
                         
-                        Text("Sign in")
+                        Text(NSLocalizedString("sign_in", comment: "Prijava korisnika."))
                             .font(.custom("Georgia", size: 22))
                             .foregroundColor(.accent)
                             .frame(maxWidth: .infinity)
@@ -43,7 +43,7 @@ struct ContentView: View {
                     
                     
                     NavigationLink(destination: Registration()){
-                        Text("Registration")
+                        Text(NSLocalizedString("registration", comment: "Registracija korisnika."))
                             .font(.custom("Georgia", size: 22))
                             .foregroundColor(.accent)
                             .frame(maxWidth: .infinity)

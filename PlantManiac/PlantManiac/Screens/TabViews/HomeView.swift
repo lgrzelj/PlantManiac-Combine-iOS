@@ -11,34 +11,52 @@ import SwiftUI
 struct HomeView: View {
     @State private var selectedTab: TabItem = .home
     @Namespace private var animation
+    
     var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
-            Group {
-                switch selectedTab {
-                case .home:
-                    Text("Home")
-                case .liked:
-                    Text("Liked")
-                    LikedView()
-                case .scan:
-                    Text("Scan")
-                    ScanView()
-                case .diary:
-                    Text("Diary")
-                    DiaryView()
-                case .profile:
-                    Text("Profile")
-                    ProfileView()
-                }
-                Spacer()
-                CustomTabBar(selected: $selectedTab)
+        
+        ZStack (alignment: .bottom){
+            Color("PrimaryBackgroundColor")
+                .ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                selectedTabOption(selectedTab: selectedTab)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .edgesIgnoringSafeArea(.bottom)
+            
+            CustomTabBar(selected: $selectedTab)
+                .ignoresSafeArea(edges: .bottom)
+                
+
         }
-        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+
     }
 }
+       
+@ViewBuilder
+    func selectedTabOption(selectedTab: TabItem) -> some View{
+        switch selectedTab {
+        case .home:
+            VStack{
+                Text(NSLocalizedString("home", comment: ""))
+                    .font(.custom("Georgia-BoldItalic", size: 24))
+                    .foregroundStyle(.accent)
+                    .padding()
+                Spacer()
+            }
+            
+        case .liked:
+            LikedView()
+        case .scan:
+            ScanView()
+        case .diary:
+            DiaryView()
+        case .profile:
+            ProfileView()
+        }
+    }
+
 
 #Preview {
     HomeView()

@@ -1,0 +1,35 @@
+//
+//  Localizable.strings
+//  PlantManiac
+//
+//  Created by ASELab on 01.08.2025..
+//
+
+
+
+"app_name" = "Plant Maniac";
+"welcome_message" = "Welcome to Plant Maniac, for further app access choose an option.";
+"sign_in" = "Sign in";
+"sign_in1" = "Sign in!";
+"registration" = "Registration";
+"registration1" = "Registration!";
+"name_lastname" = "Name and Lastname";
+"username" = "Username";
+"password" = "Password";
+"username_available" = "Username available";
+"username_exists" = "Username already exists!";
+"password_requirement" = "Password needs to contain 6 marks.";
+"registration_success" = "Registration successful!";
+"home" = "Home";
+"liked" = "Liked plants";
+"scan" = "Scan plant";
+"profile" = "Profile";
+"diary" = "Diary of plants";
+"no_picture" = "No picture selected.";
+"add_picture" = "Select picture";
+"options" = "Choose an option";
+"gallery" = "Choose from gallery";
+"quit" = "Quit";
+"loading" = "Loading...";
+"no_id_plant" = "It is not possible to detect plant id!" ;
+"error_id_plant" = "Error occured while parsing response. ";

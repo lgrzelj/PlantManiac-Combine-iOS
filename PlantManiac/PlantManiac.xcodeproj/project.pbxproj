@@ -32,6 +32,7 @@
 		D5D695BE2E360F140013C13F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D5D695BD2E360F140013C13F /* FirebaseStorageCombine-Community */; };
 		D5D695C92E3629FE0013C13F /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D5D695C82E3629FE0013C13F /* FirebaseCrashlytics */; };
 		D5D695CB2E3629FE0013C13F /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D5D695CA2E3629FE0013C13F /* FirebaseInAppMessaging-Beta */; };
+		D5EEE8862E3D13A200ADB8BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5EEE8852E3D13A200ADB8BD /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		D509BFC62E2E99FC009D5F8A /* PlantManiacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlantManiacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5211B7B2E30F1E600634A55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5C1E1932E354185000AB523 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5EEE8842E3D13A200ADB8BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D5EEE8872E3D13B700ADB8BD /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -128,6 +131,7 @@
 		D509BFA32E2E99FA009D5F8A = {
 			isa = PBXGroup;
 			children = (
+				D5EEE8852E3D13A200ADB8BD /* Localizable.strings */,
 				D5C1E1932E354185000AB523 /* GoogleService-Info.plist */,
 				D5211B7B2E30F1E600634A55 /* Assets.xcassets */,
 				D509BFAE2E2E99FA009D5F8A /* PlantManiac */,
@@ -270,6 +274,7 @@
 			knownRegions = (
 				en,
 				Base,
+				hr,
 			);
 			mainGroup = D509BFA32E2E99FA009D5F8A;
 			minimizedProjectReferenceProxies = 1;
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5C1E1942E354185000AB523 /* GoogleService-Info.plist in Resources */,
+				D5EEE8862E3D13A200ADB8BD /* Localizable.strings in Resources */,
 				D5211B7C2E30F1E600634A55 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +356,18 @@
 			targetProxy = D509BFC72E2E99FC009D5F8A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D5EEE8852E3D13A200ADB8BD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5EEE8842E3D13A200ADB8BD /* en */,
+				D5EEE8872E3D13B700ADB8BD /* hr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D509BFCE2E2E99FC009D5F8A /* Debug */ = {

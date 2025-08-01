@@ -27,7 +27,7 @@ struct SplashView: View {
                         .scaleEffect(logoScale)
                         .opacity(logoOpacity)
 
-                    Text("Plant Maniac")
+                    Text(NSLocalizedString("app_name", comment :"Naslov aplikcije"))
                         .font(.custom("Georgia-Italic", size: 32))
                         .foregroundColor(.accentColor)
                         .opacity(logoOpacity)
