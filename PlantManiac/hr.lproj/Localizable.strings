@@ -33,3 +33,5 @@
 "loading" = "Učitavanje...";
 "no_id_plant" = "Nije moguće identificirati biljku!" ;
 "error_id_plant" = "Greška kod parsiranja odgovora.";
+"plant_info" = "Informacije o biljci";
+"care_level" = "Razina njege";

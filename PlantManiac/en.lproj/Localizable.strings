@@ -33,3 +33,5 @@
 "loading" = "Loading...";
 "no_id_plant" = "It is not possible to detect plant id!" ;
 "error_id_plant" = "Error occured while parsing response. ";
+"plant_info" = "Plant info";
+"care_level" = "Care level";
