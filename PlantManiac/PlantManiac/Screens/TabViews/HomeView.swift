@@ -21,8 +21,8 @@ struct HomeView: View {
             VStack(spacing: 0) {
                 selectedTabOption(selectedTab: selectedTab)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.bottom, 80)
             }
-            .edgesIgnoringSafeArea(.bottom)
             
             CustomTabBar(selected: $selectedTab)
                 .ignoresSafeArea(edges: .bottom)

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct PlantDetails: View {
     
-    @State private var image: UIImage? = nil
+    var plant: PlantDetailsModel
+    @State private var showSaveAlert = false
+
     
     var body: some View {
         ZStack {
@@ -19,13 +21,13 @@ struct PlantDetails: View {
             
             
             VStack(spacing: 20){
-                Text(NSLocalizedString("plant_info", comment:""))
+                Text("plant_info")
                     .font(.custom("Georgia-BoldItalic", size: 24))
                     .foregroundColor(.accent)
-                    .edgesIgnoringSafeArea(.top)
-                    .padding(25)
+                    .padding(20)
+                    .padding(.top, 10)
                 
-                Text("Name of the plant")
+                Text(plant.name)
                     .font(.custom("Georgia-Italic", size: 18))
                     .foregroundColor(.accent)
                     .textCase(.uppercase)
@@ -34,7 +36,7 @@ struct PlantDetails: View {
                     
                     HStack (alignment: .top, spacing: 20){
                         
-                        if let image = image {
+                        if let image = plant.plantImage {
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFit()
@@ -45,20 +47,20 @@ struct PlantDetails: View {
                             Rectangle()
                                 .fill(Color.gray.opacity(0.2))
                                 .frame(width: 150, height: 200)
-                                .overlay(Text(NSLocalizedString("no_picture", comment: "")).foregroundColor(.gray))
+                                .overlay(Text ("no_picture").foregroundColor(.gray))
                                 .cornerRadius(12).padding(5)
                         }
                             
                         VStack(alignment: .leading, spacing: 10){
                             
-                            Text(NSLocalizedString("care_level", comment: ""))
+                            Text("care_level")
                                     .font(.custom("Georgia", size: 16))
                                     .foregroundColor(.accent)
                                     .textCase(.uppercase)
 
                             HStack(spacing: 5) {
                                 ForEach(0..<5) { index in
-                                    Image(systemName: index < 3 ? "star.fill" : "star")
+                                    Image(systemName: index < plant.careLevel ? "star.fill" : "star")
                                         .font(.system(size: 24))
                                         .foregroundColor(.yellow)
                                 }
@@ -69,7 +71,7 @@ struct PlantDetails: View {
                                 Image(systemName: "sun.max.fill")
                                     .font(.system(size: 28))
                                     .foregroundColor(.yellow)
-                                Text("Bright, indirect light")
+                                Text(plant.sunlight.joined(separator: ", "))
                                     .textCase(.uppercase)
                                     .font(.custom("Georgia", size: 16))
                                     .foregroundColor(.accent)
@@ -84,7 +86,7 @@ struct PlantDetails: View {
                                 Image("HumidityLevel")
                                 
                                 
-                                Text("60%")
+                                Text(plant.humidity)
                                     .font(.custom("Georgia", size: 16))
                                     .foregroundColor(.accent)
                                 
@@ -92,7 +94,7 @@ struct PlantDetails: View {
                                     .frame(width: 24, height: 24)
                                     .padding(.leading, 5)
                                 
-                                Text("18–27°C")
+                                Text(plant.temperature)
                                     .font(.custom("Georgia", size: 16))
                                     .foregroundColor(.accent)
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -103,29 +105,35 @@ struct PlantDetails: View {
                         }
                         Spacer()
                     }
-                    Spacer()
                     
                     VStack(alignment: .leading, spacing: 10){
                         
-                        Text("Description")
+                        Text("description")
                             .textCase(.uppercase)
                             .font(.custom("Georgia", size: 16))
                             .foregroundColor(.accent)
                         
-                        Text("Description of description")
+                        ScrollView{
+                            Text(plant.description)
+                                                        .font(.custom("Georgia", size: 16))
+                                                        .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .frame(height: 90)
+                        
+                        Text("summary")
+                            .textCase(.uppercase)
                             .font(.custom("Georgia", size: 16))
-                            .frame(maxWidth: .infinity, maxHeight: 50, alignment: .leading)
+                            .foregroundColor(.accent)
+                        
+                        ScrollView{
+                            Text(plant.summary)
+                                                        .font(.custom("Georgia", size: 16))
+                                                        .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .frame(height: 90)
                             
-                        Text("Summary")
-                            .textCase(.uppercase)
-                            .font(.custom("Georgia", size: 16))
-                            .foregroundColor(.accent)
-                        
-                        Text("Summary of summary")
-                            .font(.custom("Georgia", size: 16))
-                            .frame(maxWidth: .infinity, maxHeight: 50, alignment: .leading)
-                        
-                        Text("Price range")
+                       
+                        Text("price_range")
                                                         .font(.custom("Georgia", size: 16))
                                                         .foregroundColor(.accent)
                                                         .textCase(.uppercase)
@@ -135,28 +143,64 @@ struct PlantDetails: View {
                             Image("Price")
                                 .frame(width: 24, height: 24)
                             
-                            Text("20-100$")
+                            Text(plant.price)
                                 .font(.custom("Georgia", size: 18))
                                 .foregroundColor(.accent)
                             
-                            Spacer(minLength: 0)
-                            Button(action: {}){
-                            Text("Buy now")
-                                    .font(.custom("Georgia", size: 18))
+                            Spacer()
+                            Button(action: {
+                                if let image = plant.plantImage {
+                                     uploadImageToImgBB(image: image) { result in
+                                        switch result {
+                                        case .success(let url):
+                                            showSaveAlert = true;          print(" Slika uploadana: \(url)")
+            savePlantToFirestore(plant: plant, imageUrl: url) { error in
+                                                if let error = error {
+                                                    print(" Greška pri spremanju: \(error.localizedDescription)")
+                                                } else {
+                                                    print(" Biljka uspješno spremljena s ImgBB URL-om!")
+                                                }
+                                            }
+                                        case .failure(let error):
+                                            print(" Greška pri uploadu slike: \(error.localizedDescription)")
+                                        }
+                                    }}}
+                                    ){
+                            Text("save_plant")
+                                    .font(.custom("Georgia", size: 16))
                                     .foregroundColor(.accent)
                                     .textCase(.uppercase)
                             }
                             .padding()
                             .background(Color("ButtonColor"))
-                            .frame(width: .infinity, height: 40)
+                            .frame(height: 40)
                             .cornerRadius(20)
                             
-                            Spacer(minLength: 0)
+                            Button(action: {}){
+                            Text("buy_now")
+                                    .font(.custom("Georgia", size: 16))
+                                    .foregroundColor(.accent)
+                                    .textCase(.uppercase)
+                            }
+                            .padding()
+                            .background(Color("ButtonColor"))
+                            .frame(height: 40)
+                            .cornerRadius(20)
+                            
                         }
                         .padding(5)
                         
                     }
                     .padding()
+                    .padding(.top, 10)
+                    
+                    .alert(isPresented: $showSaveAlert) {
+                        Alert(
+                            title: Text("🌱 Biljka spremljena!"),
+                            message: Text("Biljka je uspješno dodana u tvoju kolekciju."),
+                            dismissButton: .default(Text("U redu"))
+                        )
+                    }
                    
                 }
                 .padding()
@@ -173,7 +217,20 @@ struct PlantDetails: View {
         }
     }
 }
-
 #Preview {
-    PlantDetails()
+    let plant = PlantDetailsModel(
+        name: "Monstera deliciosa",
+        probability: 3,
+        commonNames: ["Monstera deliciosa1", "Monstera deliciosa2"],
+        description: "Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa, Monstera deliciosa",
+        summary: "Summary......",
+        watering: "3-4",
+        sunlight: ["Bright", "indirect light"],
+        temperature: "50",
+        humidity: "50%",
+        careLevel: 4,
+        price: "40",
+        plantImage: nil
+    )
+    PlantDetails(plant: plant)
 }

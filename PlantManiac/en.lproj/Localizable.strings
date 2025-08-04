@@ -31,7 +31,15 @@
 "gallery" = "Choose from gallery";
 "quit" = "Quit";
 "loading" = "Loading...";
+"error_url" = "URL is not right.";
+"error_image" = "Error while converting image";
 "no_id_plant" = "It is not possible to detect plant id!" ;
 "error_id_plant" = "Error occured while parsing response. ";
 "plant_info" = "Plant info";
 "care_level" = "Care level";
+"learn_more" = "Learn more";
+"description" = "Description";
+"summary" = "Summary";
+"price_range" = "Price range";
+"save_plant" = "Save plant";
+"buy_now" = "Buy now";

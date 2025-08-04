@@ -14,7 +14,8 @@ struct ScanView: View {
     @State private var showSourceSelection = false
     @State private var image: UIImage? = nil
     @StateObject private var plantIdentifier = PlantIdentifier()
-    
+    @State private var showDetails = false
+
     var body: some View {
         
         
@@ -48,16 +49,11 @@ struct ScanView: View {
                             .padding()
                     }
                     
-                    Text(plantIdentifier.resultText)
-                        .font(.custom("Georgia", size: 18))
-                        .foregroundColor(.primary)
-                        .multilineTextAlignment(.center)
-                        .padding()
                     
                     if plantIdentifier.isLoading {
                         ProgressView(NSLocalizedString("loading", comment: ""))
                             .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
-                            .scaleEffect(1.4)
+                            .scaleEffect(1)
                             .padding()
                     } else if !plantIdentifier.resultText.isEmpty {
                         Text(plantIdentifier.resultText)
@@ -65,10 +61,21 @@ struct ScanView: View {
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.center)
                             .padding()
+                        
+                       
+                    }
+                    if let plant = plantIdentifier.plantDetails {
+
+                        NavigationLink(destination: PlantDetails(plant: plant)) {
+                            Text(NSLocalizedString("learn_more", comment: ""))
+                                .font(.custom("Georgia", size: 18))
+                                .foregroundColor(.accent)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                        }
                     }
 
-                    
-                    
+                    }
                     Button( action: {
                         showSourceSelection = true
                     }){
@@ -82,8 +89,6 @@ struct ScanView: View {
                     }
                     .padding(.horizontal, 50)
                     .padding()
-                    
-                    Spacer()
                 }
                 
                 
@@ -110,7 +115,7 @@ struct ScanView: View {
         }
         
     }
-}
+
 
 
 #Preview {

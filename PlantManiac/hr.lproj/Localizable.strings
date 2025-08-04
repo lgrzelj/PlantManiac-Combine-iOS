@@ -31,7 +31,15 @@
 "gallery" = "Učitaj iz galerije";
 "quit" = "Odustani";
 "loading" = "Učitavanje...";
+"error_url" = "URL nije važeći.";
+"error_image" = "Greška kod obrade slike.";
 "no_id_plant" = "Nije moguće identificirati biljku!" ;
 "error_id_plant" = "Greška kod parsiranja odgovora.";
 "plant_info" = "Informacije o biljci";
 "care_level" = "Razina njege";
+"learn_more" = "Saznaj više";
+"description" = "Opis";
+"summary" = "Sažetak";
+"price_range" = "Cijena";
+"save_plant" = "Spremi biljku";
+"buy_now" = "Kupi odmah";
