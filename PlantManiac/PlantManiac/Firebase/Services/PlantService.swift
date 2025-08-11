@@ -29,10 +29,23 @@ func savePlantToFirestore(plant: PlantDetailsModel, imageUrl: String, completion
         "careLevel": plant.careLevel,
         "price": plant.price,
         "imageUrl": imageUrl,
-        "createdAt": FieldValue.serverTimestamp()
+        "isLiked": false
     ]
 
     db.collection("saved_plants").addDocument(data: plantData) { error in
         completion(error)
+    }
+}
+
+func updateIsLiked(for plant: PlantFirestoreModel, to newValue: Bool) {
+    let db = Firestore.firestore()
+    db.collection("saved_plants").document(plant.id!).updateData([
+        "isLiked": newValue
+    ]) { error in
+        if let error = error {
+            print("Greška prilikom ažuriranja isLiked: \(error)")
+        } else {
+            print("isLiked uspješno ažuriran na \(newValue)")
+        }
     }
 }
