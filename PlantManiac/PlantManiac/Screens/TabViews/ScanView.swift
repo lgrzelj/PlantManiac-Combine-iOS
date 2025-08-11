@@ -28,9 +28,9 @@ struct ScanView: View {
                 VStack {
                     
                     Text(NSLocalizedString("scan", comment: ""))
-                        .font(.custom("Georgia-BoldItalic", size: 28))
+                        .font(.custom("Georgia-BoldItalic", size: 24))
                         .foregroundColor(.accentColor)
-                        .padding(.top, 40)
+                        .padding(.top, 30)
                         .padding(.bottom, 20)
                     
                     if let image = image {

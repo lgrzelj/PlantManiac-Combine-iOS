@@ -17,6 +17,9 @@ struct SignIn: View {
     @State private var isLoading = false
     @State private var navigateToHome = false
     
+    @AppStorage("isUserLoggedIn") private var isUserLoggedIn = false
+
+    
     var body: some View {
 
         NavigationStack{
@@ -107,7 +110,7 @@ struct SignIn: View {
                     
                     
                     .navigationDestination(isPresented: $navigateToHome){
-                        HomeView()
+                        HomeView(plantsList: PlantListViewModel())
                 }
                     Spacer()
             }
@@ -119,26 +122,26 @@ struct SignIn: View {
             
     }
     func signIn() {
-            isLoading = true
-            errorMessage = nil
+        isLoading = true
+        errorMessage = nil
 
         AuthService.shared.loginWithUsername(username: username, password: password) { result in
             DispatchQueue.main.async {
-                       isLoading = false
-            isLoading = false
-            
+                isLoading = false
+                
                 switch result {
                 case .success:
-                    print("Login successfull!")
+                    print("Login successful!")
+                    isUserLoggedIn = true      
                     navigateToHome = true
                 case .failure(let error):
                     print("Error occured in login process: \(error.localizedDescription)")
                     self.errorMessage = error.localizedDescription
                 }
+            }
         }
-        }
-
     }
+
 }
 
 #Preview {

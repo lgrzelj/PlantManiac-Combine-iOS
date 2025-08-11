@@ -23,6 +23,7 @@ struct Registration: View {
     @State private var registrationSuccess = false
     @State private var navigateToHome = false
     
+    
     var body: some View {
         NavigationStack{
         ZStack {
@@ -157,7 +158,7 @@ struct Registration: View {
                                 .padding(.horizontal, 50)
                                 .padding(.top, 40)
                                 .navigationDestination(isPresented: $navigateToHome){
-                                        HomeView()
+                                    HomeView(plantsList: PlantListViewModel())
                                 }
                                                        
                                 if registrationSuccess {
