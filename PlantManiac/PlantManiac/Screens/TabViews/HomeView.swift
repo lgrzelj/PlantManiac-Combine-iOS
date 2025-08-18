@@ -15,33 +15,34 @@ struct HomeView: View {
     @ObservedObject var plantsList: PlantListViewModel
     
     var body: some View {
-        
-        ZStack (alignment: .bottom){
-            Color("PrimaryBackgroundColor")
-                .ignoresSafeArea()
+        NavigationStack{
+            ZStack (alignment: .bottom){
+                Color("PrimaryBackgroundColor")
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 0) {
+                    selectedTabOption(selectedTab: selectedTab)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(.bottom, 80)
+                }
+                
+                CustomTabBar(selected: $selectedTab)
+                    .ignoresSafeArea(edges: .bottom)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            VStack(spacing: 0) {
-                selectedTabOption(selectedTab: selectedTab)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding(.bottom, 80)
+            .onAppear {
+                if let _ = Auth.auth().currentUser {
+                    plantsList.fetchPlants()
+                    
+                } else {
+                    print("Korisnik nije prijavljen, ne dohvaćam biljke.")
+                }
             }
             
-            CustomTabBar(selected: $selectedTab)
-                .ignoresSafeArea(edges: .bottom)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        
-        .onAppear {
-                    if let _ = Auth.auth().currentUser {
-                        plantsList.fetchPlants()
-                                        
-                    } else {
-                        print("Korisnik nije prijavljen, ne dohvaćam biljke.")
-                    }
-                }
         
     }
-    
     @ViewBuilder
     func selectedTabOption(selectedTab: TabItem) -> some View{
         switch selectedTab {
@@ -60,9 +61,11 @@ struct HomeView: View {
                                    .multilineTextAlignment(.center)
                                    .padding()
                     } else {
-                        ForEach(plantsList.plants) { plant in
-                            PlantListView(plant: plant, onLikeToggle: {  plantsList.toggleLike(for: plant)})
-                        }
+                            ForEach(plantsList.plants) { plant in
+                                
+                                PlantListView(plant: plant, onLikeToggle: {  plantsList.toggleLike(for: plant)})
+                            }
+                        
                     }
                 }
                 .padding(.vertical)

@@ -81,6 +81,6 @@
 "about_app" = "About app";
 "sign_out" = "Sign out";
 "app_about" = "About app";
-"about_app" = "PlantManiac is an app for plant lovers. It helps you track your plants, receive reminders for watering and care, and organize your green friends in the best way possible.";
+"about_app" = "PlantManiac is a comprehensive app designed for plant lovers to simplify and enhance their plant care routine. The app allows users to 📋 track the growth and health of their plants, 📝 log detailed notes, and 📅 organize tasks related to watering, fertilizing, and general maintenance. With built-in ⏰ reminders and notifications, users can ensure they never miss an important care task. PlantManiac also provides a 🌿 clear overview of all plants in one place, making it easier to manage multiple plants efficiently. Its 🖥️ intuitive interface combines functionality with ease of use, turning plant care into a structured, enjoyable, and rewarding experience.";
 "more_info" = "More information";
 "about_app_more" = "PlantManiac was created as part of a thesis project and is not intended for commercial use. The identification of certain plants will not be accurate, as the API does not precisely recognize the exact plant but rather its family. @L.G.";

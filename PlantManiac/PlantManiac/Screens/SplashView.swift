@@ -17,44 +17,44 @@ struct SplashView: View {
 
     var body: some View {
         if isActive {
-                   if isUserLoggedIn {
-                       HomeView(plantsList: plantsList)
-                   } else {
-                       WelcomeScreen()
-                   }
-               } else {
-                   ZStack {
-                       Color("PrimaryBackgroundColor")
-                           .ignoresSafeArea()
+            if isUserLoggedIn {
+                HomeView(plantsList: plantsList)
+            } else {
+                WelcomeScreen()
+            }
+        } else {
+            ZStack {
+                Color("PrimaryBackgroundColor")
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 20) {
+                    Image("LogoIcon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 120)
+                        .scaleEffect(logoScale)
+                        .opacity(logoOpacity)
 
-                       VStack(spacing: 20) {
-                           Image("LogoIcon")
-                               .resizable()
-                               .scaledToFit()
-                               .frame(width: 120, height: 120)
-                               .scaleEffect(logoScale)
-                               .opacity(logoOpacity)
+                    Text(NSLocalizedString("app_name", comment :"Naslov aplikacije"))
+                        .font(.custom("Georgia-Italic", size: 32))
+                        .foregroundColor(.accentColor)
+                        .opacity(logoOpacity)
+                }
+            }
+            .onAppear {
+                withAnimation(.easeIn(duration: 1.2)) {
+                        logoScale = 1.0
+                        logoOpacity = 1.0
+                }
 
-                           Text(NSLocalizedString("app_name", comment :"Naslov aplikcije"))
-                               .font(.custom("Georgia-Italic", size: 32))
-                               .foregroundColor(.accentColor)
-                               .opacity(logoOpacity)
-                       }
-                   }
-                   .onAppear {
-                       withAnimation(.easeIn(duration: 1.2)) {
-                           logoScale = 1.0
-                           logoOpacity = 1.0
-                       }
+                isUserLoggedIn = Auth.auth().currentUser != nil
 
-                       isUserLoggedIn = Auth.auth().currentUser != nil
-
-                       DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                           withAnimation {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        withAnimation {
                                isActive = true
-                           }
-                       }
-                   }
-               }
-           }
-       }
+                    }
+                }
+            }
+        }
+    }
+}

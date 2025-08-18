@@ -18,63 +18,64 @@ struct ScanView: View {
 
     var body: some View {
         
-        
+        NavigationStack{
         ZStack{
             Color("PrimaryBackgroundColor")
                 .ignoresSafeArea()
             
-            ScrollView{
                 
-                VStack {
+                ScrollView{
                     
-                    Text(NSLocalizedString("scan", comment: ""))
-                        .font(.custom("Georgia-BoldItalic", size: 24))
-                        .foregroundColor(.accentColor)
-                        .padding(.top, 30)
-                        .padding(.bottom, 20)
-                    
-                    if let image = image {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 400)
-                            .cornerRadius(12)
-                            .padding()
-                    } else {
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(height: 400)
-                            .overlay(Text(NSLocalizedString("no_picture", comment: "")).foregroundColor(.gray))
-                            .cornerRadius(12)
-                            .padding()
-                    }
-                    
-                    
-                    if plantIdentifier.isLoading {
-                        ProgressView(NSLocalizedString("loading", comment: ""))
-                            .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
-                            .scaleEffect(1)
-                            .padding()
-                    } else if !plantIdentifier.resultText.isEmpty {
-                        Text(plantIdentifier.resultText)
-                            .font(.custom("Georgia", size: 18))
-                            .foregroundColor(.primary)
-                            .multilineTextAlignment(.center)
-                            .padding()
+                    VStack {
                         
-                       
-                    }
-                    if let plant = plantIdentifier.plantDetails {
-
-                        NavigationLink(destination: PlantDetails(plant: plant)) {
-                            Text(NSLocalizedString("learn_more", comment: ""))
-                                .font(.custom("Georgia", size: 18))
-                                .foregroundColor(.accent)
-                                .multilineTextAlignment(.center)
+                        Text(NSLocalizedString("scan", comment: ""))
+                            .font(.custom("Georgia-BoldItalic", size: 24))
+                            .foregroundColor(.accentColor)
+                            .padding(.top, 30)
+                            .padding(.bottom, 20)
+                        
+                        if let image = image {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 400)
+                                .cornerRadius(12)
+                                .padding()
+                        } else {
+                            Rectangle()
+                                .fill(Color.gray.opacity(0.2))
+                                .frame(height: 400)
+                                .overlay(Text(NSLocalizedString("no_picture", comment: "")).foregroundColor(.gray))
+                                .cornerRadius(12)
                                 .padding()
                         }
-                    }
-
+                        
+                        
+                        if plantIdentifier.isLoading {
+                            ProgressView(NSLocalizedString("loading", comment: ""))
+                                .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
+                                .scaleEffect(1)
+                                .padding()
+                        } else if !plantIdentifier.resultText.isEmpty {
+                            Text(plantIdentifier.resultText)
+                                .font(.custom("Georgia", size: 18))
+                                .foregroundColor(.primary)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                            
+                            
+                        }
+                        if let plant = plantIdentifier.plantDetails {
+                            
+                            NavigationLink(destination: PlantDetails(plant: plant, fromScanView: true)) {
+                                Text(NSLocalizedString("learn_more", comment: ""))
+                                    .font(.custom("Georgia", size: 18))
+                                    .foregroundColor(.accent)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                            }
+                        }
+                        
                     }
                     Button( action: {
                         showSourceSelection = true
@@ -112,6 +113,7 @@ struct ScanView: View {
                     ImagePicker(sourceType: sourceType, selectedImage: $image)
                 }
             }
+        }
         }
         
     }

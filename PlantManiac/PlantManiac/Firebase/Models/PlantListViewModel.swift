@@ -87,12 +87,8 @@ class PlantListViewModel: ObservableObject {
        }
 
     func searchPlants(query: String){
-        if query.isEmpty {
-            filteredPlants = plants
-        } else {
-            filteredPlants = plants.filter {
-                $0.name.localizedCaseInsensitiveContains(query)
-            }
-        }
+        filteredPlants = query.isEmpty
+            ? plants
+            : plants.filter { $0.name.localizedCaseInsensitiveContains(query) }
     }
 }

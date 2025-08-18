@@ -23,8 +23,7 @@ struct AboutAppView: View {
             
             Text("about_app")
                 .font(.custom("Georgia", size: 15))
-                .multilineTextAlignment(.leading)
-                .padding(.top, 20)
+                .frame(maxWidth: .infinity, alignment: .leading)               .padding(.top, 20)
             
             Text("more_info")
                 .font(.custom("Georgia", size: 15))

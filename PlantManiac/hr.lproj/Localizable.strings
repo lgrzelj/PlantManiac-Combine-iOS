@@ -81,6 +81,6 @@
 "expired_reminders" = "Istekli podsjetnici bilješka";
 "sign_out" = "Odjava";
 "app_about" = "O aplikaciji";
-"about_app" = "PlantManiac je aplikacija za ljubitelje biljaka. Pomaže ti pratiti biljke, dobivati podsjetnike za zalijevanje i brigu, te organizirati svoje zelene prijatelje na najbolji način.";
+"about_app" = "PlantManiac je sveobuhvatna aplikacija namijenjena ljubiteljima biljaka koja olakšava i unapređuje brigu o biljkama. Aplikacija omogućuje korisnicima da 📋 prate rast i zdravlje svojih biljaka, 📝 bilježe detaljne bilješke te 📅 organiziraju zadatke vezane uz zalijevanje, gnojidbu i opću njegu. Uz ugrađene ⏰ podsjetnike i notifikacije, korisnici nikada ne propuste važan zadatak njege. PlantManiac također pruža 🌿 jasan pregled svih biljaka na jednom mjestu, olakšavajući upravljanje većim brojem biljaka. Njeno 🖥️ intuitivno sučelje kombinira funkcionalnost i jednostavnost korištenja, čineći brigu o biljkama strukturiranom, ugodnom i nagrađujućom aktivnošću.";
 "more_info" = "Više informacija";
 "about_app_more" = "PlantManiac je napravljen u svrhu diplomskog rada te nije upotrebljiv u komercijalne svrhe. Identifikacija pojedinih biljaka neće biti točna jer API ne prepoznaje točno koja je biljka nego njezinu porodicu. @L.G.";

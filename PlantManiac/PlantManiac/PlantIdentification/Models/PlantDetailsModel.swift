@@ -20,8 +20,9 @@ struct PlantDetailsModel {
     var careLevel: Int  // 1 - 5 zvjezdica
     var price: String
     var plantImage: UIImage?
+    var imageUrl: String?
     
-    init(name: String, probability: Int, commonNames: [String], description: String, summary: String, watering: String, sunlight: [String], temperature: String, humidity: String, careLevel: Int, price: String, plantImage: UIImage?) {
+    init(name: String, probability: Int, commonNames: [String], description: String, summary: String, watering: String, sunlight: [String], temperature: String, humidity: String, careLevel: Int, price: String, plantImage: UIImage?, imageUrl: String?) {
             self.name = name
             self.probability = probability
             self.commonNames = commonNames
@@ -34,6 +35,7 @@ struct PlantDetailsModel {
             self.careLevel = careLevel
             self.price = price
             self.plantImage = plantImage
+            self.imageUrl = imageUrl
         }
 }
 

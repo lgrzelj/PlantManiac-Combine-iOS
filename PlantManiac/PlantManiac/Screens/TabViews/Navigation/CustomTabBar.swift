@@ -91,7 +91,7 @@ struct CustomTabBar: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 35, height: 35)
                                     .foregroundColor(selected == tab ? .white : .black)
-                                    .offset(y: selected == tab ? -5 : 0)
+                                    .offset(y: selected == tab ? -2 : 0)
                             }
                             .frame(maxWidth: .infinity)
                         }

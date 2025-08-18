@@ -12,10 +12,17 @@ import SwiftUI
 struct ValidatedAsyncImageView: View {
     let urlString: String?
     @State private var isValidURL: Bool? = nil
+    @State private var loadedImage: UIImage? = nil
     
+    var onImageLoaded: ((UIImage?) -> Void)? = nil
+
     var body: some View {
         Group {
-            if isValidURL == true {
+            if let image = loadedImage {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+            } else if isValidURL == true {
                 AsyncImage(url: URL(string: urlString ?? "")) { image in
                     image
                         .resizable()
@@ -44,7 +51,7 @@ struct ValidatedAsyncImageView: View {
         }
         
         var request = URLRequest(url: url)
-        request.httpMethod = "HEAD" // Brži nego GET
+        request.httpMethod = "HEAD"
         
         URLSession.shared.dataTask(with: request) { _, response, error in
             DispatchQueue.main.async {
@@ -57,4 +64,17 @@ struct ValidatedAsyncImageView: View {
             }
         }.resume()
     }
+    
+    private func loadImageFromURL(_ url: URL) {
+            URLSession.shared.dataTask(with: url) { data, _, _ in
+                DispatchQueue.main.async {
+                    if let data = data, let uiImage = UIImage(data: data) {
+                        self.loadedImage = uiImage
+                        onImageLoaded?(uiImage) 
+                    } else {
+                        onImageLoaded?(nil)
+                    }
+                }
+            }.resume()
+        }
 }

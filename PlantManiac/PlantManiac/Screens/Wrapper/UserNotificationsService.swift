@@ -57,8 +57,7 @@ class UserNotificationsService{
                }
        }
     
-    
-    //upotreba COMBINE
+        //upotreba COMBINE
     func fetchReminders(for uid: String, on date: Date) -> AnyPublisher<[ReminderFirestoreModel], Error> {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)

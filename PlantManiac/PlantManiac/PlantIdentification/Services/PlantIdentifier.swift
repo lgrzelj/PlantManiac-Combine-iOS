@@ -8,7 +8,7 @@ class PlantIdentifier: ObservableObject {
     @Published var plantDetails: PlantDetailsModel?
     
     private let wikiFetcher = FetchingDataFromWiki()
-    let apiKey = "HIeIhpXVcj9aveaD52U49zcQ1GW0zR68eJlVhwGWDs0LkzZaA7"
+    let apiKey = "DI05PI7jTvqqCoerMEH04CkEx2MOMNJpanGoMBIkBzUNKCEjk5"
     
     // Automatska identifikacija biljke
     func identifyPlant(image: UIImage) {
@@ -47,7 +47,7 @@ class PlantIdentifier: ObservableObject {
             request.httpBody = try JSONSerialization.data(withJSONObject: payload)
         } catch {
             DispatchQueue.main.async {
-                self.resultText = "error_id_plant"
+                self.resultText = NSLocalizedString("error_id_plant", comment: "")
                 self.isLoading = false
             }
             return
@@ -55,7 +55,7 @@ class PlantIdentifier: ObservableObject {
         
         URLSession.shared.dataTask(with: request) { data, _, _ in
             guard let data = data else {
-                self.updateWithError("no_id_plant")
+                self.updateWithError(NSLocalizedString("no_id_plant", comment:""))
                 return
             }
             self.processIdentificationResponse(data, userImage: image)
@@ -91,7 +91,7 @@ class PlantIdentifier: ObservableObject {
         details: [String: Any],
         userImageSelected: UIImage?
     ) {
-        let fallbackSummary = (details["wiki_description"] as? [String: Any])?["value"] as? String ?? "Trenutno nije dostupan."
+        let fallbackSummary = (details["wiki_description"] as? [String: Any])?["value"] as? String ?? "Currently not available."
         let fallbackDescription = fallbackSummary
         let sunlight = details["sunlight"] as? [String] ?? ["Bright, indirect light"]
         let watering = details["watering"] as? String ?? "2-3x week"
@@ -174,7 +174,8 @@ class PlantIdentifier: ObservableObject {
                 humidity: humidity,
                 careLevel: careLevel,
                 price: String(format: "%.2f", price),
-                plantImage: plantImage
+                plantImage: plantImage,
+                imageUrl: nil
             )
             self.isLoading = false
         }
